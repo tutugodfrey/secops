@@ -8,10 +8,10 @@ pipeline {
           script{
             def remote = [:]
             remote.name = "controlnode"
-            remote.host = "xxx.xxx.xxx.xxx"
+            remote.host = "44.246.214.104"
             remote.allowAnyHosts = true
 
-            withCredentials([sshUserPrivateKey(credentialsId: 'sshUser', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
+            withCredentials([sshUserPrivateKey(credentialsId: 'ubuntu', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'userName')]) {
                 remote.user = userName
                 remote.identityFile = identity
                 stage("Placeholder Stage...") {
@@ -19,7 +19,8 @@ pipeline {
                   sshCommand remote: remote, sudo: true, command: 'echo "some more stuff goes here....."'
               }
                 stage("Scan with InSpec") {
-                  sshCommand remote: remote, sudo: true, command: 'inspec exec /root/linux-baseline/'
+                  // sshCommand remote: remote, sudo: true, command: 'inspec exec /root/linux-baseline/'
+                  sshCommand remote: remote, sudo: true, command: 'inspec exec linux-baseline/'
               }
             }
           }
