@@ -20,7 +20,7 @@ pipeline {
               }
                 stage("Scan with InSpec") {
                   // sshCommand remote: remote, sudo: true, command: 'inspec exec /root/linux-baseline/'
-                  sshCommand remote: remote, sudo: true, command: 'inspec exec linux-baseline/'
+                  sshCommand remote: remote, command: 'inspec exec linux-baseline/'
               }
             }
           }
